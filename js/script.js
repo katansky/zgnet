@@ -1,0 +1,64 @@
+
+function handlePreloader() {
+    //noinspection JSJQueryEfficiency
+    if($('.preloader').length){
+        $('.preloader').delay(500).fadeOut(500);
+    }
+}
+
+$(window).on('load', function() {
+    handlePreloader();
+});
+
+
+var theToggle = document.getElementById('toggle');
+
+
+function hasClass(elem, className) {
+    return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+}
+
+function addClass(elem, className) {
+    if (!hasClass(elem, className)) {
+        elem.className += ' ' + className;
+    }
+}
+
+function removeClass(elem, className) {
+    var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+    if (hasClass(elem, className)) {
+        while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+            newClass = newClass.replace(' ' + className + ' ', ' ');
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    }
+}
+
+function toggleClass(elem, className) {
+    var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+    if (hasClass(elem, className)) {
+        while (newClass.indexOf(" " + className + " ") >= 0 ) {
+            newClass = newClass.replace( " " + className + " " , " " );
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    } else {
+        elem.className += ' ' + className;
+    }
+}
+
+theToggle.onclick = function() {
+    toggleClass(this, 'on');
+    return false;
+};
+
+
+
+
+$('#toggle').on('click', function () {
+    if ($(this).hasClass('on')){
+        $('#menu').fadeToggle();
+    }
+    else {
+        $('#menu').fadeToggle();
+    }
+});
